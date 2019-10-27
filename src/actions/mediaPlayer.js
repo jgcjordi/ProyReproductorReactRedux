@@ -23,7 +23,7 @@ export const newArraySongs =
     })
 
 export const newPlayerSC =
-    (playerSC) => ({
+    (playerSC, startSong) => ({
         type: 'NEW_PLAYER_SC',
         payload: {
             playerSC,

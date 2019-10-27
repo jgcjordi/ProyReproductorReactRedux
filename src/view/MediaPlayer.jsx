@@ -62,6 +62,7 @@ class MediaPlayer extends Component {
         SC.stream('/tracks/' + id)
             .then((player) => {
                 player.play()
+                console.log(player)
                 this.props.newPlayerSC(player)
             });
         this.props.newImagePlayer(src)
@@ -99,6 +100,10 @@ class MediaPlayer extends Component {
         return image
     }
 
+    onPlay(){
+
+    }
+
 
     ////////////RENDER///////////////
 
@@ -122,9 +127,7 @@ class MediaPlayer extends Component {
 
                 <div className="media">
 
-                    <AudioPlayerControll
-                        player={this.props.playerSC}
-                    />
+                    <AudioPlayerControll/>
 
                     <Player
                         onDragOver={(ev) => this.onDragOverAtPlayer(ev)}
@@ -143,9 +146,9 @@ class MediaPlayer extends Component {
                     </div>
                 </div>
 
-                <pre>
+                {/* <pre>
                     {console.log(this.props.playerSC)}
-                </pre>
+                </pre> */}
 
                 {/* <pre>
                     {JSON.stringify(this.props.arraySongs, null,4)}
