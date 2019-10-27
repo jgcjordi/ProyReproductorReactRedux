@@ -7,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Reproductor con React y Redux con API SoundCloud</h1>
       <MediaPlayer />
     </div>
   );

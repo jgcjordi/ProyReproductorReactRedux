@@ -7,4 +7,28 @@
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.CardSong {
+    display: flex;
+    margin-bottom: 10px;
+    width: 300px;
+    min-height: 100px;
+    box-shadow: 5px 5px 10px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: none;
+    background: #e3f0e0;
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: black;
+    font-weight: 600;
 }

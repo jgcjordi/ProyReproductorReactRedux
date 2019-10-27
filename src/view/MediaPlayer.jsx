@@ -4,7 +4,6 @@ import CardSong from '../components/CardSong';
 import Player from '../components/Player';
 import AudioPlayerControll from '../components/AudioPlayerControll';
 
-
 import SC from 'soundcloud';
 
 import ImageDiscDefault from '../images/discDefault.jpg';
@@ -12,6 +11,8 @@ import ImagePlayer from '../images/reproductor.jpg';
 
 import { connect } from 'react-redux';
 import { newSearchText, newArraySongs, newImagePlayer, newPlayerSC } from '../actions/mediaPlayer';
+
+import './MediaPlayer.css';
 
 
 
@@ -100,7 +101,7 @@ class MediaPlayer extends Component {
         return image
     }
 
-    onPlay(){
+    onPlay() {
 
     }
 
@@ -111,28 +112,30 @@ class MediaPlayer extends Component {
 
         return (
             <div className="searcherAndMedia">
-                <h1>Reproductor con React y Redux con API SoundCloud</h1>
-
-                <div className="searcher">
-                    <button className="searchButton" onClick={() => this.onBtnSearchClicked()}>Buscar</button>
-                    <input
-                        className="seacherTextImput"
-                        type="text"
-                        placeholder="Busca la cancion..."
-                        onChange={(ev) => this.onSearcherTextChanged(ev)}
-                        onKeyDown={this.handleKeyDown}
-                        value={this.props.searchText}
-                    />
-                </div>
 
                 <div className="media">
 
-                    <AudioPlayerControll/>
+                    <div className="playerWithBar">
+                        <div className="searcher">
+                            <button className="searchButton" onClick={() => this.onBtnSearchClicked()}>Buscar</button>
+                            <input
+                                className="seacherTextImput"
+                                type="text"
+                                placeholder="Busca la cancion..."
+                                onChange={(ev) => this.onSearcherTextChanged(ev)}
+                                onKeyDown={this.handleKeyDown}
+                                value={this.props.searchText}
+                            />
+                        </div>
 
-                    <Player
-                        onDragOver={(ev) => this.onDragOverAtPlayer(ev)}
-                        onDrop={(ev) => this.onDropAtPlayer(ev)}
-                        imagePlayer={this.ifEmptyImagePlayer()} />
+                        <Player
+                            onDragOver={(ev) => this.onDragOverAtPlayer(ev)}
+                            onDrop={(ev) => this.onDropAtPlayer(ev)}
+                            imagePlayer={this.ifEmptyImagePlayer()} />
+
+                        <AudioPlayerControll />
+                    </div>
+
 
                     <div className="cardsSong">
                         {this.props.arraySongs.map(song =>
