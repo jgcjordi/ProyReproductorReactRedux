@@ -4,7 +4,7 @@ La web utiliza peticiones get a la api de Sound Cloud para obener las cancioes d
 
 [https://jgcjordi.github.io/ProyReproductorReactRedux/](https://jgcjordi.github.io/ProyReproductorReactRedux/)
 
-![image](https://raw.githubusercontent.com/jgcjordi/ProyReproductorReactRedux/master/portada.jpg)
+![image](https://raw.githubusercontent.com/jgcjordi/ProyReproductorReactRedux/master/readme/portada.png)
 
 ## Tecnologías Utilizadas
 
