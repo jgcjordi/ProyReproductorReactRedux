@@ -3,6 +3,7 @@ const INITIAL_STATE = {
     searchText: '',
     arraySongs: [],
     imagePlayer: '',
+    playerSC: null,
 
 }
 
@@ -25,6 +26,12 @@ const mediaPlayer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 arraySongs: action.payload.arraySongs,
+            }
+
+        case 'NEW_PLAYER_SC':
+            return {
+                ...state,
+                playerSC: action.payload.playerSC,
             }
 
 

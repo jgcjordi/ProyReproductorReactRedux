@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+
 import CardSong from '../components/CardSong';
 import Player from '../components/Player';
+import AudioPlayerControll from '../components/AudioPlayerControll';
+
+
 import SC from 'soundcloud';
+
 import ImageDiscDefault from '../images/discDefault.jpg';
 import ImagePlayer from '../images/reproductor.jpg';
 
-
 import { connect } from 'react-redux';
-import { newSearchText, newArraySongs, newImagePlayer } from '../actions/mediaPlayer';
+import { newSearchText, newArraySongs, newImagePlayer, newPlayerSC } from '../actions/mediaPlayer';
+
 
 
 
@@ -42,30 +47,23 @@ class MediaPlayer extends Component {
     }
 
     onDragStart(ev) {
-        console.log("OnDragStart")
-        console.log(ev.target.src)
         ev.dataTransfer.setData("idSong", ev.target.id);
-        ev.dataTransfer.setData("srcSong", ev.target.src);
-
-        console.log(ev.target.id)
+        ev.dataTransfer.setData("srcSong", ev.target.title);
     }
 
     onDragOverAtPlayer(ev) {
         ev.preventDefault();
-        console.log("OnDragOverAtPlayer")
     }
 
     onDropAtPlayer(ev) {
         ev.preventDefault();
-        console.log("OnDropAtPlayer")
         let id = ev.dataTransfer.getData("idSong");
         let src = ev.dataTransfer.getData("srcSong");
-        console.log(src)
-        console.log(id)
-        SC.stream('/tracks/' + id).then(function (player) {
-            player.play();
-            console.log(player)
-        });
+        SC.stream('/tracks/' + id)
+            .then((player) => {
+                player.play()
+                this.props.newPlayerSC(player)
+            });
         this.props.newImagePlayer(src)
     }
 
@@ -95,7 +93,7 @@ class MediaPlayer extends Component {
 
     ifEmptyImagePlayer() {
         let image = this.props.imagePlayer
-        if (image == "") {
+        if (image === "") {
             image = ImagePlayer
         }
         return image
@@ -123,6 +121,11 @@ class MediaPlayer extends Component {
                 </div>
 
                 <div className="media">
+
+                    <AudioPlayerControll
+                        player={this.props.playerSC}
+                    />
+
                     <Player
                         onDragOver={(ev) => this.onDragOverAtPlayer(ev)}
                         onDrop={(ev) => this.onDropAtPlayer(ev)}
@@ -131,6 +134,7 @@ class MediaPlayer extends Component {
                     <div className="cardsSong">
                         {this.props.arraySongs.map(song =>
                             <CardSong
+                                key={song.id}
                                 id={song.id}
                                 title={song.title}
                                 src={this.ifNullImageDisc(song)}
@@ -138,6 +142,10 @@ class MediaPlayer extends Component {
                             />)}
                     </div>
                 </div>
+
+                <pre>
+                    {console.log(this.props.playerSC)}
+                </pre>
 
                 {/* <pre>
                     {JSON.stringify(this.props.arraySongs, null,4)}
@@ -150,13 +158,15 @@ class MediaPlayer extends Component {
 const mapStateToProps = state => ({
     searchText: state.mediaPlayer.searchText,
     imagePlayer: state.mediaPlayer.imagePlayer,
-    arraySongs: state.mediaPlayer.arraySongs
+    arraySongs: state.mediaPlayer.arraySongs,
+    playerSC: state.mediaPlayer.playerSC
 })
 
 const mapDispatchToProps = dispatch => ({
     newSearchText: (searchText) => dispatch(newSearchText(searchText)),
     newImagePlayer: (imagePlayer) => dispatch(newImagePlayer(imagePlayer)),
-    newArraySongs: (arraySongs) => dispatch(newArraySongs(arraySongs))
+    newArraySongs: (arraySongs) => dispatch(newArraySongs(arraySongs)),
+    newPlayerSC: (playerSC) => dispatch(newPlayerSC(playerSC))
 })
 
 export default connect(
