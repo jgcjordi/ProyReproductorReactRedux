@@ -63,7 +63,6 @@ class MediaPlayer extends Component {
         SC.stream('/tracks/' + id)
             .then((player) => {
                 player.play()
-                console.log(player)
                 this.props.newPlayerSC(player)
             });
         this.props.newImagePlayer(src)
@@ -99,10 +98,6 @@ class MediaPlayer extends Component {
             image = ImagePlayer
         }
         return image
-    }
-
-    onPlay() {
-
     }
 
 

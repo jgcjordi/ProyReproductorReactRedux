@@ -14,9 +14,9 @@ Para la construcción de la web se ha utilizado react y redux, el API de Sound C
 
 ### Elementos y funcionalidades
 
-* Buscador de canciones: Petición get a la api de soundcloud.
+* Buscador de canciones: Petición get a la api de soundcloud mediante libreria importada.
 
 * Seleccionar canción con drag and drop.
 
-* Player controller, funcionalidad sin terminar.
+* Player controller funcional, con play/pause y barra de progreso no interactiva.
 

@@ -3,7 +3,7 @@
     width: 400px;
     min-width: 300px;
     height: 56px;
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, .07);
+    box-shadow: 2.5px 2.5px 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;

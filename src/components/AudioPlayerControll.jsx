@@ -11,25 +11,41 @@ class AudioPlayerControll extends Component {
 
 
         this.state = {
-            playPauseIcon: "M0 0h6v24H0zM12 0h6v24h-6z",
+            playPauseIcon: "M18 12L0 24V0",
             totalTime: "-:--",
             currentTime: "-:--",
             progressPrecentaje: "0%",
             startSong: true,
+            player: props.playerSC
         };
 
         this.onPlayPauseClick = this.onPlayPauseClick.bind(this);
     }
 
+    ////////////LIFE CICLE///////////////
+
+    static getDerivedStateFromProps(props, state){
+        if (props.playerSC !== state.player) {
+            console.log("Eureca")
+            state.startSong = true
+            state.playPauseIcon = "M0 0h6v24H0zM12 0h6v24h-6z"
+          }
+        return null
+    }
+
     componentDidUpdate() {
         if (this.props.playerSC != null && this.state.startSong) {
             this.startProgressControll()
+            this.onFinish()
             this.setState({
                 startSong: false,
+                player: this.props.playerSC,
             })
         }
         return null
     }
+
+    ////////////SHORTEN FUNCTIONS///////////////
 
 
     startProgressControll() {
@@ -70,6 +86,17 @@ class AudioPlayerControll extends Component {
             let current = parseInt(currentTime, 10)
             return current / dur * 100;
         }
+    }
+
+
+    ////////////////LISTENERS//////////////////////
+
+    onFinish() {
+        this.props.playerSC.on("finish", () => {
+            this.setState({
+                playPauseIcon: "M18 12L0 24V0",
+            })
+        })
     }
 
 
