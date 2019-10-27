@@ -4,7 +4,7 @@ La web utiliza peticiones get a la api de Sound Cloud para obener las cancioes d
 
 [https://jgcjordi.github.io/ProyReproductorReactRedux/](https://jgcjordi.github.io/ProyReproductorReactRedux/)
 
-<!-- ![image](https://raw.githubusercontent.com/jgcjordi/proyectoSoundCloud/master/ejemploReadme.jpg) -->
+![image](https://raw.githubusercontent.com/jgcjordi/ProyReproductorReactRedux/master/portada.jpg)
 
 ## Tecnologías Utilizadas
 
@@ -18,5 +18,5 @@ Para la construcción de la web se ha utilizado react y redux, el API de Sound C
 
 * Seleccionar canción con drag and drop.
 
-<!-- * Player controller -->
+* Player controller, funcionalidad sin terminar.
 
